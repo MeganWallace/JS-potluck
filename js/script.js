@@ -11,13 +11,29 @@ const guestCount = document.querySelector(".attendance");
 // alert when guest list is full (not yet visible)
 const guestFull = document.querySelector(".alert");
 
-addGuestButton.addEventListener("click", function(){
+// addGuestButton.addEventListener("click", function(){
+//   const guest = guestInput.value; // assigns guest to the input box vale
+//   // console.log(guest);
+//   if(guest !== ""){ //checks that input is not empty
+//     let listItem = document.createElement("li"); //creates new list item
+//     listItem.innerText = guest; //assigns guest value to new list item
+//     guestList.append(listItem); //adds new list item to guest list
+//   }
+// })
+
+// ----- add both click and keydown events for guestInput button -----
+function getGuestInput(){
   const guest = guestInput.value; // assigns guest to the input box vale
-  // console.log(guest);
   if(guest !== ""){ //checks that input is not empty
     let listItem = document.createElement("li"); //creates new list item
     listItem.innerText = guest; //assigns guest value to new list item
     guestList.append(listItem); //adds new list item to guest list
   }
-})
+}
 
+addGuestButton.addEventListener("click", getGuestInput);
+document.addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    getGuestInput();
+  }
+})
