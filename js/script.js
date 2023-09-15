@@ -11,6 +11,12 @@ const guestCount = document.querySelector(".attendance");
 // alert when guest list is full (not yet visible)
 const guestFull = document.querySelector(".alert");
 
+// assign dish button
+const assignButton = document.querySelector(".assign");
+// unordered list
+const assignedItems = document.querySelector(".assigned-items");
+
+//======================= GUEST LIST =======================
 //---------- click event for invite button ----------
 addGuestButton.addEventListener("click", function () {
   const guest = guestInput.value; //assigns guest to the input box vale
@@ -59,3 +65,34 @@ const updateGuestCount = function () {
     guestFull.classList.remove("hide"); //shows guest list full message
   }
 }
+
+//======================= ASSIGNED DISHES LIST =======================
+//---------- function to assign dishes ----------
+const assignItems = function () {
+  const potluckItems = ["Peach and Prosciutto Bruschetta",
+    "Tomato & Mozzarella Caprese Skewers",
+    "Pesto Pasta Salad",
+    "Sweet and Salty Watermelon Fruit Salad",
+    "Avocado Tomato Salad",
+    "White Gazpacho",
+    "Seasonal Fruit Chaat",
+    "Watermelon Salad with Feta & Mint",
+    "Lemon-Garlic Whipped Feta with Pesto",
+    "Easy No-Bake Cheesecake",
+    "Summer Peach and Tahini Tart",
+    "The Ultimate Grilled Zucchini Salad"];
+  const allGuests = document.querySelectorAll(".guest-list li"); //selects all guests
+  for (let guest of allGuests) { //loops through each guest
+    let randomPotluckIndex = Math.floor(Math.random() * potluckItems.length); //generates a random number between 0 and item list length (12)
+    let randomPotluckItem = potluckItems[randomPotluckIndex]; //sets value to the item at the random index
+
+    let listItem = document.createElement("li"); //creates new list item
+    listItem.innerText = `${guest.innerText} is bringing ${randomPotluckItem}.`;
+    //use .innerText to grab the list item value. without it the actual list element would be targeted
+    assignedItems.append(listItem); //adds new list item to assignment list
+  }
+}
+
+assignButton.addEventListener("click", function () {
+  assignItems();
+})
