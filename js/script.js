@@ -90,9 +90,13 @@ const assignItems = function () {
     listItem.innerText = `${guest.innerText} is bringing ${randomPotluckItem}.`;
     //use .innerText to grab the list item value. without it the actual list element would be targeted
     assignedItems.append(listItem); //adds new list item to assignment list
+
+    potluckItems.splice(randomPotluckIndex, 1); //removes item from array so it can't be assigned again
   }
 }
 
+//---------- click event for assign dish button ----------
 assignButton.addEventListener("click", function () {
-  assignItems();
+  assignItems(); //assigns dishes
+  assignButton.disabled = true; //disables button after code has run so a second set of dishes can't be assigned
 })
