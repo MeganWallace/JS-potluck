@@ -12,43 +12,47 @@ const guestCount = document.querySelector(".attendance");
 const guestFull = document.querySelector(".alert");
 
 //---------- click event for invite button ----------
-addGuestButton.addEventListener("click", function(){
-  const guest = guestInput.value; // assigns guest to the input box vale
+addGuestButton.addEventListener("click", function () {
+  const guest = guestInput.value; //assigns guest to the input box vale
   // console.log(guest);
-  if(guest !== ""){ //checks that input is not empty
-    addToList();
-    clearInput();
-    updateGuestCount();
+  if (guest !== "") { //checks that text input is not empty
+    addToList(guest); //adds text input to list
+    updateGuestCount(); //updates guest counter
+    clearInput(); //clears text box
   }
 })
 
 //---------- document keydown event for invite button ----------
-document.addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
+document.addEventListener("keydown", function (e) {
+  const guest = guestInput.value; //assigns guest to the input box vale
 
-// ADD CODE FROM CLICK EVENT BODY HERE
-
+  if (e.key === "Enter") { //triggers if enter key is pushed
+    if (guest !== "") { //checks that text input is not empty
+      addToList(guest); //adds text input to list
+      updateGuestCount(); //updates guest counter
+      clearInput(); //clears text box
+    }
   }
 })
 
 //---------- function to clear text box ----------
-const clearInput = function(){ 
+const clearInput = function () {
   guestInput.value = "";
 }
 
-//---------- function to add name to guest list ----------
-const addToList = function(){ 
-  const guest = guestInput.value; // assigns guest to the input box vale
+//---------- function to add text input to guest list ----------
+const addToList = function (guest) {
   const listItem = document.createElement("li"); //creates new list item
   listItem.innerText = guest; //assigns guest value to new list item
   guestList.append(listItem); //adds new list item to guest list
 }
 
 //---------- function to update guest count ----------
-const updateGuestCount = function(){
-  const guests = document.querySelectorAll(".guest-list li") //selects all list items
-  guestCount.innerText = guests.length
-  if(guests.length>=8){
+const updateGuestCount = function () {
+  const guests = document.querySelectorAll(".guest-list li"); //selects all list items
+  guestCount.innerText = guests.length; //sets counter to list length value
+
+  if (guests.length >= 8) {
     addGuestButton.classList.add("hide"); //hides invite button
     guestInput.classList.add("hide"); //hides text box
     guestInputLabel.classList.add("hide"); //hides invite button label
