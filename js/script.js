@@ -98,5 +98,5 @@ const assignItems = function () {
 //---------- click event for assign dish button ----------
 assignButton.addEventListener("click", function () {
   assignItems(); //assigns dishes
-  assignButton.disabled = true; //disables button after code has run so a second set of dishes can't be assigned
+  assignButton.disabled = true; //disables button after code has run so multiple dishes can't be assigned to one guest
 })
