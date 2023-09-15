@@ -15,14 +15,18 @@ addGuestButton.addEventListener("click", function(){
   const guest = guestInput.value; // assigns guest to the input box vale
   // console.log(guest);
   if(guest !== ""){ //checks that input is not empty
-    let listItem = document.createElement("li"); //creates new list item
-    listItem.innerText = guest; //assigns guest value to new list item
-    guestList.append(listItem); //adds new list item to guest list
+    addToList();
     clearInput();
   }
 })
 
-const clearInput = function(){
+const clearInput = function(){ //function to clear text box 
   guestInput.value = "";
 }
 
+const addToList = function(){ //function to add name to guest list
+  const guest = guestInput.value; // assigns guest to the input box vale
+  const listItem = document.createElement("li"); //creates new list item
+  listItem.innerText = guest; //assigns guest value to new list item
+  guestList.append(listItem); //adds new list item to guest list
+}
